@@ -1,5 +1,11 @@
+import { HomeLayout } from "@/components";
+
 export default function Home() {
   return (
-    <main>HNG Taiwo (frontend) and Rholland (designer) Ecommerce task</main>
-  );
+    <HomeLayout>
+      <div>
+        Home page
+      </div>
+    </HomeLayout>
+   );
 }
