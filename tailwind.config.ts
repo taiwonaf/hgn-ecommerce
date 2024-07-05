@@ -33,6 +33,7 @@ const config = {
         text: "#3B3C3E",
         subText: "#737584",
         mainBg: "#F2F2F8",
+        borderColor: "#FAFAFA",
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
