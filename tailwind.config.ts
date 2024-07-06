@@ -38,6 +38,7 @@ const config = {
         redText: "#E90707",
         greyBg: "#F1F1F1",
         blackIcon: "#141416",
+        flutterwave: "#FF9900",
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
