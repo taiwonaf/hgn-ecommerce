@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
 import { Slash } from "lucide-react";
-import CheckoutContainer from "@/containers/CheckoutContainer";
+import PaymentMethod from "@/containers/PaymentMethod";
 
 const page = () => {
   return (
@@ -52,7 +52,7 @@ const page = () => {
           </div>
         </div>
       </div>
-      <CheckoutContainer />
+      <PaymentMethod />
     </HomeLayout>
   );
 };

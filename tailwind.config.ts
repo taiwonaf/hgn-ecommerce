@@ -36,6 +36,8 @@ const config = {
         borderColor: "#FAFAFA",
         starGreen: "#40C601",
         redText: "#E90707",
+        greyBg: "#F1F1F1",
+        blackIcon: "#141416",
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
