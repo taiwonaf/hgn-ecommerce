@@ -8,6 +8,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import Link from "next/link";
 
 const StoreHeader = () => {
   return (
@@ -17,20 +18,24 @@ const StoreHeader = () => {
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem>
-                <BreadcrumbLink href="/" className="text-base font-medium text-subText">Home</BreadcrumbLink>
+                <Link className="text-base font-medium text-subText" href={"/"}>
+                  Home
+                </Link>
               </BreadcrumbItem>
               <BreadcrumbSeparator>
                 <Slash />
               </BreadcrumbSeparator>
               <BreadcrumbItem>
-                <BreadcrumbPage className="cursor-not-allowed text-base font-medium text-subText">Airpods</BreadcrumbPage>
+                <BreadcrumbPage className="cursor-not-allowed text-base font-medium text-subText">
+                  Airpods
+                </BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
         </div>
         <div className="cursor-pointer flex justify-between items-center gap-3 p-1.5 rounded-[8px] duration-300 transition-all hover:bg-subText/10">
-            <span className="text-base text-primary font-medium">Sort by</span>
-            <ChevronDown className="w-4 h-4 text-primary" />
+          <span className="text-base text-primary font-medium">Sort by</span>
+          <ChevronDown className="w-4 h-4 text-primary" />
         </div>
       </div>
     </div>

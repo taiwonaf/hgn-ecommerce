@@ -35,6 +35,7 @@ const config = {
         mainBg: "#F2F2F8",
         borderColor: "#FAFAFA",
         starGreen: "#40C601",
+        redText: "#E90707",
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
