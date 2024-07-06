@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import LogoLight from "@/assets/images/shopnow-light.png";
+// import LogoLight from "@/assets/images/shopnow-light.png";
 import {
   FacebookIcon,
   InstagramIcon,
@@ -12,6 +12,7 @@ import Link from "next/link";
 import Qrcode from "@/assets/images/qrcode.png";
 import Google from "@/assets/images/google-download.png";
 import Apple from "@/assets/images/apple-download.png";
+import { LogoLight } from "@/assets/images";
 
 const Footer = () => {
   const downloads = [

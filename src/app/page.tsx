@@ -1,11 +1,12 @@
-import { HomeLayout } from "@/components";
+import { Categories, HomeLayout, StoreHeader } from "@/components";
+import HomeContainer from "@/containers/HomeContainer";
 
 export default function Home() {
   return (
     <HomeLayout>
-      <div>
-        Home page
-      </div>
+      <Categories />
+      <StoreHeader />
+      <HomeContainer />
     </HomeLayout>
    );
 }

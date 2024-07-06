@@ -34,6 +34,7 @@ const config = {
         subText: "#737584",
         mainBg: "#F2F2F8",
         borderColor: "#FAFAFA",
+        starGreen: "#40C601",
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
