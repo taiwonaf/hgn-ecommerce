@@ -11,9 +11,9 @@ interface Iprop {
 const ProductDetailsContainer: React.FC<Iprop> = ({ product }) => {
   return (
     <div className="px-4 pt-4 pb-16">
-      <div className="max-w-[1240px] w-full mx-auto gap-5 md:flex justify-between items-start">
+      <div className="max-w-[1240px] w-full mx-auto gap-5 flex flex-col md:flex-row justify-between items-start">
         <ImageGallery images={product.images} />
-        <div className="md:w-1/2 max-w-[530px]">
+        <div className="md:w-1/2 max-w-[530px] mx-auto md:mx-0">
           <h2 className="text-primary text-4xl font-bold mb-2">AirPods Max</h2>
           <div className="flex justify-between items-center gap-2">
             <h3 className="text-primary font-medium text-3xl">$545.00</h3>

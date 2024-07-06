@@ -10,7 +10,7 @@ interface IProp {
 const ImageGallery: React.FC<IProp> = ({ images }) => {
   const [currentImage, setCurrentImage] = useState<number>(0);
   return (
-    <div className="flex justify-start items-center flex-col md:w-1/2">
+    <div className="flex justify-start items-center flex-col md:w-1/2 w-full">
       <div className="max-w-[632px] w-full h-[508px] bg-white rounded-4 flex justify-center items-center rounded-[16px] mb-12">
         <div className="max-w-[270px] w-full h-[300px] flex justify-center items-center">
           <Image
