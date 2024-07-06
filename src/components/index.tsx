@@ -7,3 +7,5 @@ export { default as CartProduct } from "./cart/CartProduct";
 export { default as CheckoutInfo } from "./checkout/CheckoutInfo";
 export { default as CheckoutProduct } from "./checkout/CheckoutProduct"
 export { default as PaymentOption } from "./paymentMethod/PaymentOption"
+export { default as PaymentForm } from "./cardPayment/PaymentForm"
+export { default as PaymentSuccess } from "./cardPayment/PaymentSucces"

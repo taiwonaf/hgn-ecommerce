@@ -1,11 +1,15 @@
+"use client"
+
 import { Cancel, Change } from "@/assets/images/icon";
 import { Flutterwave } from "@/assets/images/paymentmethods";
+import { PaymentForm, PaymentSuccess } from "@/components";
 import { Button } from "@/components/ui/button";
 import { Lock } from "iconsax-react";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 
 const CardPaymentContainer = () => {
+  const [ success, setSuccess ] = useState<boolean>(false)
   return (
     <div className="px-4 pb-12">
       <div className="max-w-[472px] w-full bg-white rounded-[16px] mx-auto pt-[100px] pb-7">
@@ -27,6 +31,7 @@ const CardPaymentContainer = () => {
             </h3>
           </div>
         </div>
+        <PaymentForm />
         <div className="px-4 mb-20 flex flex-col justify-center items-center gap-3">
           <div className="cursor-pointer border-[1px] border-subText/70 bg-mainBg py-2 px-3 rounded-[8px] flex justify-center items-center gap-1">
             <Image
@@ -61,11 +66,12 @@ const CardPaymentContainer = () => {
               <span className="font-bold">Flutterwave</span>
             </p>
           </div>
-          <Button className="bg-primary rounded-[12px] h-12 transition-colors text-base duration-300 hover:bg-primary/80 text-white w-full">
+          <Button onClick={() => setSuccess(true)} className="bg-primary rounded-[12px] h-12 transition-colors text-base duration-300 hover:bg-primary/80 text-white w-full">
             Make Payment
           </Button>
         </div>
       </div>
+      <PaymentSuccess open={success} setOpen={setSuccess} />
     </div>
   );
 };
