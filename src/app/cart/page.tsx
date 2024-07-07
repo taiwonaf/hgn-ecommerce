@@ -1,6 +1,5 @@
-import { HomeLayout, Categories, StoreHeader } from "@/components";
+import { HomeLayout, Categories } from "@/components";
 import CartContainer from "@/containers/CartContainer";
-import { productsData } from "@/data/products";
 import React from "react";
 import {
     Breadcrumb,
@@ -12,8 +11,7 @@ import {
 import Link from "next/link";
 import { Slash } from "lucide-react";
 
-const page = ({ params }: { params: { id: string } }) => {
-  const product = productsData.find((item) => item.id === params?.id);
+const page = () => {
   return (
     <HomeLayout>
       <Categories />
@@ -31,8 +29,16 @@ const page = ({ params }: { params: { id: string } }) => {
                 <Slash />
               </BreadcrumbSeparator>
               <BreadcrumbItem>
-                <BreadcrumbPage className="cursor-not-allowed text-base font-medium text-primary">
+                <Link className="text-base font-medium text-subText" href={"/"}>
                   Airpods
+                </Link>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator>
+                <Slash />
+              </BreadcrumbSeparator>
+              <BreadcrumbItem>
+                <BreadcrumbPage className="cursor-not-allowed text-base font-medium text-primary">
+                  Cart
                 </BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>

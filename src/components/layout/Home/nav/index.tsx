@@ -1,12 +1,17 @@
-import { ChevronDown, HeartIcon, SearchIcon, ShoppingBag } from "lucide-react";
+"use client"
+
+import { ChevronDown, HeartIcon, SearchIcon } from "lucide-react";
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Image from "next/image";
 import LogoDark from "@/assets/images/shopnow-logo-dark.png";
 import Link from "next/link";
 import { HambergerMenu } from "iconsax-react";
+import { ShoppingBag } from "@/assets/images/icon";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
+  const router = useRouter();
   return (
     <nav>
       <div className="max-w-[1240px] w-full mx-auto flex justify-between items-center py-6 px-4">
@@ -32,8 +37,14 @@ const Navbar = () => {
             <ChevronDown className="w-4 h-4 text-primary" />
           </div>
           <div className="max-w-[130px] w-full flex justify-between items-center gap-3">
-            <div className="p-1.5 rounded-[8px] duration-300 transition-all hover:bg-subText/10">
-              <ShoppingBag className="h-6 w-6 text-primary font-light cursor-pointer" />
+            <div onClick={() => router.push('/cart')} className="p-1.5 rounded-[8px] duration-300 transition-all hover:bg-subText/10">
+              <Image
+                src={ShoppingBag}
+                alt="Shop now shopping bag"
+                height={24}
+                width={24}
+                className="w-full h-full object-contain"
+              />
             </div>
             <div className="p-1.5 rounded-[8px] duration-300 transition-all hover:bg-subText/10">
               <HeartIcon className="h-6 w-6 text-primary hover:text-primary/80 cursor-pointer" />

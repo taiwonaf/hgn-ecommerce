@@ -1,3 +1,5 @@
+"use client"
+
 import {
   Amazon,
   Bank,
@@ -8,9 +10,11 @@ import {
 } from "@/assets/images/paymentmethods";
 import { PaymentOption } from "@/components";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const PaymentMethod = () => {
+  const router = useRouter();
   const paymentMethods = [
     {
       img: Bank,
@@ -52,7 +56,7 @@ const PaymentMethod = () => {
           ))}
         </div>
         <div className="px-4">
-          <Button className="bg-primary rounded-[12px] h-12 transition-colors text-base duration-300 hover:bg-primary/80 text-white w-full">
+          <Button onClick={() => router.push('/card-payment')} className="bg-primary rounded-[12px] h-12 transition-colors text-base duration-300 hover:bg-primary/80 text-white w-full">
             Make Payment
           </Button>
         </div>

@@ -1,7 +1,10 @@
+"use client";
+
 import { ImageGallery } from "@/components";
 import { Button } from "@/components/ui/button";
 import { IProduct } from "@/types/product.model";
 import { Add, Minus, Star1, Warning2 } from "iconsax-react";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 interface Iprop {
@@ -9,6 +12,7 @@ interface Iprop {
 }
 
 const ProductDetailsContainer: React.FC<Iprop> = ({ product }) => {
+  const router = useRouter();
   return (
     <div className="px-4 pt-4 pb-16">
       <div className="max-w-[1240px] w-full mx-auto gap-5 flex flex-col md:flex-row justify-between items-start">
@@ -66,12 +70,19 @@ const ProductDetailsContainer: React.FC<Iprop> = ({ product }) => {
           </div>
           <div className="flex justify-between items-center gap-5 mb-12">
             <div className="max-w-[235px] w-full">
-              <Button className="bg-primary rounded-[12px] h-12 transition-colors duration-300 hover:bg-primary/80 text-white w-full">
+              <Button
+                onClick={() => router.push("/cart")}
+                className="bg-primary rounded-[12px] h-12 transition-colors duration-300 hover:bg-primary/80 text-white w-full"
+              >
                 Buy Now
               </Button>
             </div>
             <div className="max-w-[235px] w-full">
-              <Button className="bg-subText rounded-[12px] h-12 transition-colors duration-300 hover:bg-subText/80 text-white w-full">
+              <Button
+                onClick={() => router.push("/cart")}
+                variant="outline"
+                className="border-primary bg-transparent rounded-[12px] h-12 transition-colors duration-300 text-primary w-full"
+              >
                 Add to Cart
               </Button>
             </div>

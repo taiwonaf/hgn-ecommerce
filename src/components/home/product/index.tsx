@@ -18,7 +18,7 @@ interface IProp   {
 const Product: React.FC<IProp> = ({ images, name, price, description, id}) => {
     const router = useRouter();
   return (
-    <div className="max-w-[292px] w-full rounded-[16px] p-5 bg-white">
+    <div onClick={() => router.push(`products/${id}`)} className="cursor-pointer max-w-[292px] w-full rounded-[16px] p-5 bg-white">
       <div className="w-full h-[163px] rounded-[12px] mb-3 flex justify-center items-center bg-mainBg">
         <Image
           src={images[0].src}
@@ -43,7 +43,7 @@ const Product: React.FC<IProp> = ({ images, name, price, description, id}) => {
           <span className="text-subText text-base font-medium">(123 reviews)</span>
         </div>
       </div>
-      <Button onClick={() => router.push(`products/${id}`)} className="rounded-[12px] w-full bg-primary hover:primary/60 text-lg duration-300 transition-all text-white/90">
+      <Button onClick={() => router.push(`cart`)} className="rounded-[12px] w-full bg-primary hover:primary/60 text-lg duration-300 transition-all text-white/90">
         Add to cart
       </Button>
     </div>

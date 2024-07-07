@@ -5,7 +5,11 @@ import { Card } from "iconsax-react";
 import React from "react";
 import { Button } from "../ui/button";
 
-const PaymentForm = () => {
+interface IProp {
+  pay: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const PaymentForm: React.FC<IProp> = ({ pay}) => {
   return (
     <div className="px-4 pb-9">
       <h2 className="text-lg font-medium text-blackIcon text-center mb-[22px]">
@@ -76,7 +80,7 @@ const PaymentForm = () => {
         </label>
       </div>
       <div className="pt-6">
-        <Button className="bg-flutterwave rounded-[12px] h-12 transition-colors text-base duration-300 hover:bg-flutterwave/80 text-white w-full">
+        <Button onClick={() => pay(true)} className="bg-flutterwave rounded-[12px] h-12 transition-colors text-base duration-300 hover:bg-flutterwave/80 text-white w-full">
           Pay USD 1,095.00
         </Button>
       </div>

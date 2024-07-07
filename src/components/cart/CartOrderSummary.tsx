@@ -1,6 +1,9 @@
+"use client"
+
 import { AddCircle } from "iconsax-react";
 import React from "react";
 import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
 
 const SummaryName = ({ name }: { name: string }) => (
   <h3 className="font-semibold text-[20px] text-primary">{name}</h3>
@@ -11,6 +14,7 @@ const SummaryNameValue = ({ value }: { value: string }) => (
 );
 
 const CartOrderSummary = () => {
+  const router = useRouter();
   const cartSummaryItems = [
     {
       name: "Subtotal",
@@ -44,7 +48,7 @@ const CartOrderSummary = () => {
         <SummaryName name={"Total Price:"} />
         <SummaryNameValue value={"$1095.00"} />
       </div>
-      <Button className="bg-primary rounded-[12px] h-12 transition-colors text-base duration-300 hover:bg-primary/80 text-white w-full">
+      <Button onClick={() => router.push('/checkout')} className="bg-primary rounded-[12px] h-12 transition-colors text-base duration-300 hover:bg-primary/80 text-white w-full">
         Proceed to Checkout
       </Button>
     </div>

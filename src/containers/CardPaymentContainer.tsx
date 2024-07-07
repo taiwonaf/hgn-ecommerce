@@ -31,7 +31,7 @@ const CardPaymentContainer = () => {
             </h3>
           </div>
         </div>
-        <PaymentForm />
+        <PaymentForm pay={setSuccess} />
         <div className="px-4 mb-20 flex flex-col justify-center items-center gap-3">
           <div className="cursor-pointer border-[1px] border-subText/70 bg-mainBg py-2 px-3 rounded-[8px] flex justify-center items-center gap-1">
             <Image

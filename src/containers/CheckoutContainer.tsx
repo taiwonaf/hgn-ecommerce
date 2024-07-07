@@ -1,9 +1,13 @@
+"use client"
+
 import { CheckoutInfo, CheckoutProduct } from "@/components";
 import { Button } from "@/components/ui/button";
 import { Box, Location } from "iconsax-react";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const CheckoutContainer = () => {
+  const router = useRouter();
   const info = [
     {
       title: "Shipping address",
@@ -37,8 +41,8 @@ const CheckoutContainer = () => {
           ))}
         </div>
         <div className="pt-6 px-5">
-          <Button className="bg-primary rounded-[12px] h-12 transition-colors text-base duration-300 hover:bg-primary/80 text-white w-full">
-            Proceed to Checkout
+          <Button onClick={() => router.push('/payment-method')} className="bg-primary rounded-[12px] h-12 transition-colors text-base duration-300 hover:bg-primary/80 text-white w-full">
+            Continue
           </Button>
         </div>
       </div>

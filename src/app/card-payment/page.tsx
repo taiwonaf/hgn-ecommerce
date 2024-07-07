@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
 import { Slash } from "lucide-react";
-import PaymentMethod from "@/containers/PaymentMethod";
 import CardPaymentContainer from "@/containers/CardPaymentContainer";
 
 const page = () => {

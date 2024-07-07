@@ -43,8 +43,19 @@ const page = () => {
                   <Slash />
                 </BreadcrumbSeparator>
                 <BreadcrumbItem>
-                  <BreadcrumbPage className="cursor-not-allowed text-base font-medium text-primary">
+                  <Link
+                    className="text-base font-medium text-subText"
+                    href={"/checkout"}
+                  >
                     Check Out
+                  </Link>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator>
+                  <Slash />
+                </BreadcrumbSeparator>
+                <BreadcrumbItem>
+                  <BreadcrumbPage className="cursor-not-allowed text-base font-medium text-primary">
+                    Payment Method
                   </BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
