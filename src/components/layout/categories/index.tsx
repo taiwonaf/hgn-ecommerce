@@ -22,7 +22,7 @@ const Categories = () => {
     },
   ];
   return (
-    <div className="border-t-subText border-t-[1px] border-b-[1px] border-b-subText py-6 px-4">
+    <div className="border-t-subText hidden md:block overflow-hidden border-t-[1px] border-b-[1px] border-b-subText py-6 px-4">
       <div className="max-w-[1240px] w-full mx-auto flex justify-start items-center gap-12">
         {categories?.map((category, index) => (
           <div key={index} onClick={() => setActiveIndex(index)} className={`cursor-pointer text-lg font-medium ${index === activeIndex ? "text-primary" : "text-subText"}`}>{category?.title}</div>
