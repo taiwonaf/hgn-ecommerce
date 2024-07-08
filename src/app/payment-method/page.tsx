@@ -15,7 +15,7 @@ const page = () => {
   return (
     <HomeLayout>
       <Categories />
-      <div className="py-6 px-4">
+      <div className="py-[18px] md:py-6 px-4">
         <div className="max-w-[1240px] w-full mx-auto flex justify-start items-center gap-12 ">
           <div>
             <Breadcrumb>

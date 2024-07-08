@@ -112,7 +112,7 @@ const Footer = () => {
         <div className="mb-24 flex justify-between items-start gap-7 flex-wrap w-full">
           <div className="max-w-[240px] md:max-w-[217px] w-full">
             <Link href="/">
-              <div className="w-[157px] h-[33px] mb-6">
+              <div className="h-[33px] w-full max-w-[157px] mb-6">
                 <Image
                   src={ShopNowLight}
                   alt="Shop now logo light"

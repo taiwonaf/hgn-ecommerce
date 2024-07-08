@@ -4,6 +4,7 @@ import { AddCircle } from "iconsax-react";
 import React from "react";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
+import { RootState, useAppSelector } from "@/redux/store";
 
 const SummaryName = ({ name }: { name: string }) => (
   <h3 className="font-medium md:font-semibold text-base md:text-[20px] text-subText md:text-primary">
@@ -18,11 +19,14 @@ const SummaryNameValue = ({ value }: { value: string }) => (
 );
 
 const CartOrderSummary = () => {
+  const { total, amount } = useAppSelector(
+    (store: RootState) => store.cartState
+  );
   const router = useRouter();
   const cartSummaryItems = [
     {
       name: "Subtotal",
-      value: "$1095.00",
+      value: `$${total.toLocaleString()}.00`,
     },
     {
       name: "Discount:",
@@ -55,6 +59,7 @@ const CartOrderSummary = () => {
         <SummaryNameValue value={"$1095.00"} />
       </div>
       <Button
+        disabled={amount < 1}
         onClick={() => router.push("/checkout")}
         className="bg-primary rounded-[12px] h-12 transition-colors text-base duration-300 hover:bg-primary/80 text-white w-full"
       >

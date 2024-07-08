@@ -5,36 +5,44 @@ import { Button } from "@/components/ui/button";
 import { IProduct } from "@/types/product.model";
 import { Add, Minus, Star1, Warning2 } from "iconsax-react";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 
 interface Iprop {
   product: IProduct;
 }
 
+const colorGradients = [
+  {
+    top: "#325470",
+    bottom: "#D3E3F2",
+    name: "Blue",
+  },
+  {
+    top: "#E35049",
+    bottom: "#F9E5E4",
+    name: "Pink",
+  },
+  {
+    top: "#4B4B49",
+    bottom: "#D3CED4",
+    name: "Purple",
+  },
+  {
+    top: "#7E8879",
+    bottom: "#EBEEE7",
+    name: "Green",
+  },
+  {
+    top: "#B6B5BA",
+    bottom: "#FAF9F7",
+    name: "Grey",
+  },
+];
+
 const ProductDetailsContainer: React.FC<Iprop> = ({ product }) => {
   const router = useRouter();
-  const colorGradients = [
-    {
-      top: "#325470",
-      bottom: "#D3E3F2",
-    },
-    {
-      top: "#E35049",
-      bottom: "#F9E5E4",
-    },
-    {
-      top: "#4B4B49",
-      bottom: "#D3CED4",
-    },
-    {
-      top: "#7E8879",
-      bottom: "#EBEEE7",
-    },
-    {
-      top: "#B6B5BA",
-      bottom: "#FAF9F7",
-    },
-  ];
+  const [selectedColor, setSelectedColor] = useState<number>(0);
+
   return (
     <div className="px-4 pt-4 pb-16">
       <div className="max-w-[1240px] w-full mx-auto md:gap-[18px] gap-5 flex flex-col md:flex-row justify-between items-start">
@@ -73,14 +81,51 @@ const ProductDetailsContainer: React.FC<Iprop> = ({ product }) => {
               <h4 className="text-primary text-base font-medium">
                 Selected Color :
               </h4>
-              <span className="text-subText">Black</span>
+              <span className="text-subText">
+                {colorGradients[selectedColor]?.name}
+              </span>
             </div>
             <div className="flex justify-start items-center gap-[12px]">
-              <span className="cursor-pointer rounded-full bg-gradient-to-b from-[#325470] from-50% to-50% to-[#D3E3F2] h-[18px] w-[18px] md:h-[28px] md:w-[28px]"></span>
-              <span className="cursor-pointer rounded-full bg-gradient-to-b from-[#E35049] from-50% to-50% to-[#F9E5E4] h-[18px] w-[18px] md:h-[28px] md:w-[28px]"></span>
-              <span className="cursor-pointer rounded-full bg-gradient-to-b from-[#4B4B49] from-50% to-50% to-[#D3CED4] h-[18px] w-[18px] md:h-[28px] md:w-[28px]"></span>
-              <span className="cursor-pointer rounded-full bg-gradient-to-b from-[#7E8879] from-50% to-50% to-[#EBEEE7] h-[18px] w-[18px] md:h-[28px] md:w-[28px]"></span>
-              <span className="cursor-pointer rounded-full bg-gradient-to-b from-[#B6B5BA] from-50% to-50% to-[#FAF9F7] h-[18px] w-[18px] md:h-[28px] md:w-[28px]"></span>
+              <span
+                onClick={() => setSelectedColor(0)}
+                className={`${
+                  selectedColor === 0
+                    ? "border border-primary rounded-fu"
+                    : null
+                } duration-300 transition-all cursor-pointer rounded-full bg-gradient-to-b from-[#325470] from-50% to-50% to-[#D3E3F2] h-[18px] w-[18px] md:h-[28px] md:w-[28px]`}
+              ></span>
+              <span
+                onClick={() => setSelectedColor(1)}
+                className={`${
+                  selectedColor === 1
+                    ? "border border-primary rounded-fu"
+                    : null
+                } duration-300 transition-all cursor-pointer rounded-full bg-gradient-to-b from-[#E35049] from-50% to-50% to-[#F9E5E4] h-[18px] w-[18px] md:h-[28px] md:w-[28px]`}
+              ></span>
+              <span
+                onClick={() => setSelectedColor(2)}
+                className={`${
+                  selectedColor === 2
+                    ? "border border-primary rounded-fu"
+                    : null
+                } duration-300 transition-all cursor-pointer rounded-full bg-gradient-to-b from-[#4B4B49] from-50% to-50% to-[#D3CED4] h-[18px] w-[18px] md:h-[28px] md:w-[28px]`}
+              ></span>
+              <span
+                onClick={() => setSelectedColor(3)}
+                className={`${
+                  selectedColor === 3
+                    ? "border border-primary rounded-fu"
+                    : null
+                } duration-300 transition-all cursor-pointer rounded-full bg-gradient-to-b from-[#7E8879] from-50% to-50% to-[#EBEEE7] h-[18px] w-[18px] md:h-[28px] md:w-[28px]`}
+              ></span>
+              <span
+                onClick={() => setSelectedColor(4)}
+                className={`${
+                  selectedColor === 4
+                    ? "border border-primary rounded-fu"
+                    : null
+                } duration-300 transition-all cursor-pointer rounded-full bg-gradient-to-b from-[#B6B5BA] from-50% to-50% to-[#FAF9F7] h-[18px] w-[18px] md:h-[28px] md:w-[28px]`}
+              ></span>
             </div>
           </div>
           <div className="md:border-b-subText md:border-b-[1px] font-normal text-subText md:pb-6 mb-6 flex justify-between items-center gap-2">
@@ -102,11 +147,11 @@ const ProductDetailsContainer: React.FC<Iprop> = ({ product }) => {
               </span>
             </div>
           </div>
-          <div className="flex justify-between items-center gap-5 mb-12 flex-col md:flex-row">
+          <div className="flex justify-between items-center gap-5 mb-[28px] md:mb-12 flex-col md:flex-row">
             <div className="md:max-w-[235px] w-full">
               <Button
                 onClick={() => router.push("/cart")}
-                className="bg-primary rounded-[12px] h-12 transition-colors duration-300 hover:bg-primary/80 text-white w-full"
+                className="bg-primary rounded-[12px] h-10 md:h-12 transition-colors duration-300 hover:bg-primary/80 text-white w-full"
               >
                 Buy Now
               </Button>
@@ -115,22 +160,26 @@ const ProductDetailsContainer: React.FC<Iprop> = ({ product }) => {
               <Button
                 onClick={() => router.push("/cart")}
                 variant="outline"
-                className="border-primary bg-transparent rounded-[12px] h-12 transition-colors duration-300 text-primary w-full"
+                className="border-primary bg-transparent rounded-[12px] h-10 md:h-12 transition-colors duration-300 text-primary w-full"
               >
                 Add to Cart
               </Button>
             </div>
           </div>
           <div className="flex justify-between items-center gap-2">
-            <span className="text-subText text-base font-normal">
+            <span className="text-subText text-[10px] md:text-base font-normal">
               Free 3 - 5 shipping
             </span>
-            <span className="text-subText text-base font-normal">|</span>
-            <span className="text-subText text-base font-normal">
+            <span className="text-subText  text-[10px] md:text-base font-normal">
+              |
+            </span>
+            <span className="text-subText  text-[10px] md:text-base font-normal">
               3 Months warranty
             </span>
-            <span className="text-subText text-base font-normal">|</span>
-            <span className="text-subText text-base font-normal">
+            <span className="text-subText  text-[10px] md:text-base font-normal">
+              |
+            </span>
+            <span className="text-subText  text-[10px] md:text-base font-normal">
               Free Apple Care
             </span>
           </div>

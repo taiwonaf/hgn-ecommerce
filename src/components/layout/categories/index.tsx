@@ -1,15 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { ArrowDown2 } from "iconsax-react";
 
 const Categories = () => {
@@ -49,8 +40,14 @@ const Categories = () => {
         </div>
       </div>
       <div className="md:hidden gap-1 px-4 flex justify-start items-center cursor-pointer">
-        <span className="text-primary font-medium text-lg  duration-300 transition-all hover:text-primary/80">{categories[activeIndex]?.title}</span>
-        <ArrowDown2 className="font-bold text-primary duration-300 transition-all hover:text-primary/80" stroke="20px" size="18" />
+        <span className="text-primary font-medium text-lg  duration-300 transition-all hover:text-primary/80">
+          {categories[activeIndex]?.title}
+        </span>
+        <ArrowDown2
+          className="font-bold text-primary duration-300 transition-all hover:text-primary/80"
+          stroke="20px"
+          size="18"
+        />
       </div>
     </>
   );

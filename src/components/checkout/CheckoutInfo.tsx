@@ -8,16 +8,18 @@ interface IProp {
 
 const CheckoutInfo: React.FC<IProp> = ({ data }) => {
   return (
-    <div className="pt-3 pb-4">
-      <h2 className="mb-3 text-base font-semibold text-text">{data?.title}</h2>
-      <div className="flex justify-between items-center">
+    <div className="md:pt-3 md:pb-4">
+      <h2 className="mb-3 text-sm px-4 md:px-0 md:text-base font-semibold text-text">
+        {data?.title}
+      </h2>
+      <div className="bg-white px-4 py-4 md:py-0 nd:px-0 md:bg-transparent flex justify-between items-center">
         <div className="flex justify-start items-center gap-3 max-w-[240px] w-full">
-          <data.icon size="32" className="text-primary" />
+          <data.icon size="22" className="text-primary" />
           <div>
             <h3 className="mb-1 text-text font-semibold text-[14px]">
               {data?.subTitle}
             </h3>
-            <p className="text-subText font-medium text-xs">
+            <p className="text-subText font-medium text-[10px] md:text-xs">
               {data?.description}
             </p>
           </div>
