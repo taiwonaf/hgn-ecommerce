@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { ChevronDown, HeartIcon, SearchIcon } from "lucide-react";
 import React from "react";
@@ -9,6 +9,8 @@ import Link from "next/link";
 import { HambergerMenu } from "iconsax-react";
 import { ShoppingBag } from "@/assets/images/icon";
 import { useRouter } from "next/navigation";
+import MobileMenu from "./MobileMenu";
+import { ShopNowDark } from "@/assets/images";
 
 const Navbar = () => {
   const router = useRouter();
@@ -17,7 +19,7 @@ const Navbar = () => {
       <div className="max-w-[1240px] w-full mx-auto flex justify-between items-center py-6 px-4">
         <Link href="/" className="h-[33px] w-[157px]">
           <Image
-            src={LogoDark}
+            src={ShopNowDark}
             alt="Shop now logo"
             height={157}
             width={33}
@@ -37,7 +39,10 @@ const Navbar = () => {
             <ChevronDown className="w-4 h-4 text-primary" />
           </div>
           <div className="max-w-[130px] w-full flex justify-between items-center gap-3">
-            <div onClick={() => router.push('/cart')} className="p-1.5 rounded-[8px] duration-300 transition-all hover:bg-subText/10">
+            <div
+              onClick={() => router.push("/cart")}
+              className="p-1.5 rounded-[8px] duration-300 transition-all hover:bg-subText/10"
+            >
               <Image
                 src={ShoppingBag}
                 alt="Shop now shopping bag"
@@ -56,7 +61,7 @@ const Navbar = () => {
           </div>
         </div>
         <div className="flex justify-center items-center md:hidden cursor-pointer p-1 rounded-[2px] duration-300 transition-all hover:bg-mainBg">
-          <HambergerMenu size="32" className="text-primary" />
+          <MobileMenu />
         </div>
       </div>
     </nav>

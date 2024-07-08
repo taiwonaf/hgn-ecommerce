@@ -1,6 +1,5 @@
 import Image from "next/image";
 import React from "react";
-// import LogoLight from "@/assets/images/shopnow-light.png";
 import {
   FacebookIcon,
   InstagramIcon,
@@ -12,7 +11,7 @@ import Link from "next/link";
 import Qrcode from "@/assets/images/qrcode.png";
 import Google from "@/assets/images/google-download.png";
 import Apple from "@/assets/images/apple-download.png";
-import { LogoLight } from "@/assets/images";
+import { ShopNowLight } from "@/assets/images";
 
 const Footer = () => {
   const downloads = [
@@ -56,11 +55,11 @@ const Footer = () => {
         },
         {
           text: "Cart",
-          link: "Shop",
+          link: "/cart",
         },
         {
           text: "Shop",
-          link: "#",
+          link: "/",
         },
       ],
     },
@@ -106,21 +105,23 @@ const Footer = () => {
     },
   ];
 
-  const date = new Date().getFullYear()
+  const date = new Date().getFullYear();
   return (
     <footer className="bg-black pt-20 px-4 pb-6">
       <div className="max-w-[1240px] w-full mx-auto">
-        <div className="mb-24 flex justify-between items-start gap-6 flex-wrap w-full">
-          <div className="max-w-[217px] w-full">
-            <div className="w-[157px] h-[33px] mb-6">
-              <Image
-                src={LogoLight}
-                alt="Shop now logo light"
-                height={157}
-                width={33}
-                className="w-full h-full object-cover"
-              />
-            </div>
+        <div className="mb-24 flex justify-between items-start gap-7 flex-wrap w-full">
+          <div className="max-w-[240px] md:max-w-[217px] w-full">
+            <Link href="/">
+              <div className="w-[157px] h-[33px] mb-6">
+                <Image
+                  src={ShopNowLight}
+                  alt="Shop now logo light"
+                  height={157}
+                  width={33}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </Link>
             <div>
               <h3 className="text-lg text-borderColor mb-6">Subscribe</h3>
               <p className="mb-4 text-base text-borderColor">
