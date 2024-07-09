@@ -3,13 +3,14 @@
 import { Cancel, Change } from "@/assets/images/icon";
 import { Flutterwave } from "@/assets/images/paymentmethods";
 import { PaymentForm, PaymentSuccess } from "@/components";
-import { Button } from "@/components/ui/button";
+import { RootState, useAppSelector } from "@/redux/store";
 import { Lock } from "iconsax-react";
 import Image from "next/image";
 import React, { useState } from "react";
 
 const CardPaymentContainer = () => {
   const [success, setSuccess] = useState<boolean>(false);
+  const total = useAppSelector((store: RootState) => store.cartState.total);
   return (
     <div className="px-4 pb-12">
       <div className="max-w-[472px] w-full md:bg-white rounded-[16px] mx-auto  md:pt-[100px] pb-7">
@@ -27,7 +28,9 @@ const CardPaymentContainer = () => {
             </h4>
             <h3 className="text-sm md:text-base text-right">
               <span className="text-blackIcon">Pay </span>
-              <span className="text-flutterwave font-medium">USD 1,095.00</span>
+              <span className="text-flutterwave font-medium">
+                USD {total.toLocaleString()}.00
+              </span>
             </h3>
           </div>
         </div>
@@ -66,12 +69,12 @@ const CardPaymentContainer = () => {
               <span className="font-bold">Flutterwave</span>
             </p>
           </div>
-          <Button
+          {/* <Button
             onClick={() => setSuccess(true)}
             className="bg-primary rounded-[12px] h-10 md:h-12 transition-colors text-base duration-300 hover:bg-primary/80 text-white w-full"
           >
             Make Payment
-          </Button>
+          </Button> */}
         </div>
       </div>
       <PaymentSuccess open={success} setOpen={setSuccess} />

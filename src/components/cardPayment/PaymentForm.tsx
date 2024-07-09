@@ -4,13 +4,16 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Card } from "iconsax-react";
 import React from "react";
 import { Button } from "../ui/button";
-import { CreditCard } from "lucide-react";
+import { RootState, useAppDispatch, useAppSelector } from "@/redux/store";
+import { clearCart } from "@/redux/slices/cart";
 
 interface IProp {
   pay: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const PaymentForm: React.FC<IProp> = ({ pay }) => {
+  const dispatch = useAppDispatch();
+  const total = useAppSelector((store: RootState) => store.cartState.total);
   return (
     <div className="md:px-4 pb-9">
       <h2 className="text-base md:text-lg font-medium text-blackIcon text-center mb-[22px]">
@@ -86,10 +89,13 @@ const PaymentForm: React.FC<IProp> = ({ pay }) => {
       </div>
       <div className="pt-6">
         <Button
-          onClick={() => pay(true)}
+          onClick={() => {
+            pay(true);
+            dispatch(clearCart());
+          }}
           className="bg-flutterwave rounded-[12px] h-10 md:h-12 transition-colors text-base duration-300 hover:bg-flutterwave/80 text-white w-full"
         >
-          Pay USD 1,095.00
+          Pay USD {total.toLocaleString()}.00
         </Button>
       </div>
     </div>

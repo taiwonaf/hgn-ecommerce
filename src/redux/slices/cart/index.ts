@@ -12,7 +12,9 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     clearCart: (state) => {
-      state = initialState;
+      state.amount = 0;
+      state.total = 0;
+      state.cartItems = [];
     },
     calculateTotals: (state) => {
       let amount = 0;
@@ -25,6 +27,7 @@ export const cartSlice = createSlice({
       state.total = total;
     },
     addToCart(state, action: PayloadAction<ICartProduct>) {
+      if (state.cartItems.some((item) => item.id === action.payload.id)) return;
       state.cartItems.push(action.payload);
       let amount = 0;
       let total = 0;
@@ -63,6 +66,46 @@ export const cartSlice = createSlice({
         };
       }
     },
+    increaseCount: (state, action: PayloadAction<{ id: string }>) => {
+      const { id } = action.payload;
+      const existingProductIndex = state.cartItems.findIndex(
+        (item) => item.id === id
+      );
+      if (existingProductIndex !== -1) {
+        state.cartItems[existingProductIndex] = {
+          ...state.cartItems[existingProductIndex],
+          quantity: state.cartItems[existingProductIndex].quantity + 1,
+        };
+      }
+      let amount = 0;
+      let total = 0;
+      state.cartItems.forEach((item) => {
+        amount += item.quantity;
+        total += item.quantity * item.price;
+      });
+      state.amount = amount;
+      state.total = total;
+    },
+    decreaseCount: (state, action: PayloadAction<{ id: string }>) => {
+      const { id } = action.payload;
+      const existingProductIndex = state.cartItems.findIndex(
+        (item) => item.id === id
+      );
+      if (existingProductIndex !== -1) {
+        state.cartItems[existingProductIndex] = {
+          ...state.cartItems[existingProductIndex],
+          quantity: state.cartItems[existingProductIndex].quantity - 1,
+        };
+      }
+      let amount = 0;
+      let total = 0;
+      state.cartItems.forEach((item) => {
+        amount += item.quantity;
+        total += item.quantity * item.price;
+      });
+      state.amount = amount;
+      state.total = total;
+    },
   },
 });
 
@@ -72,5 +115,7 @@ export const {
   removeFromCart,
   editProductQuantity,
   calculateTotals,
+  increaseCount,
+  decreaseCount,
 } = cartSlice.actions;
 export default cartSlice.reducer;

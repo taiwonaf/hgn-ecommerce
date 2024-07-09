@@ -10,6 +10,7 @@ import {
 } from "@/assets/images/paymentmethods";
 import { PaymentOption } from "@/components";
 import { Button } from "@/components/ui/button";
+import { RadioGroup } from "@/components/ui/radio-group";
 import { useRouter } from "next/navigation";
 import React from "react";
 
@@ -44,7 +45,7 @@ const PaymentMethod = () => {
   return (
     <div className="pt-2 md:pt-0 md:px-4 pb-12">
       <div className="max-w-[472px] w-full mx-auto md:bg-white rounded-[16px] md:pt-11 pb-6 flex flex-col justify-between">
-        <div className="grid mb-7 md:mb-10">
+        <RadioGroup className="grid mb-7 md:mb-10">
           {paymentMethods.slice(0, 3)?.map((item, index) => (
             <PaymentOption key={index} data={item} />
           ))}
@@ -54,7 +55,7 @@ const PaymentMethod = () => {
           {paymentMethods.slice(3, -1)?.map((item, index) => (
             <PaymentOption key={index} data={item} />
           ))}
-        </div>
+        </RadioGroup>
         <div className="px-4">
           <Button
             onClick={() => router.push("/card-payment")}

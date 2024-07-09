@@ -29,7 +29,10 @@ const Product: React.FC<IProp> = ({ images, name, price, description, id }) => {
   const router = useRouter();
   return (
     <div className=" max-w-[292px] w-full rounded-[16px] p-5 bg-white">
-      <div className="w-full h-[163px] rounded-[12px] mb-3 flex justify-center items-center bg-mainBg">
+      <div
+        onClick={() => router.push(`products/${id}`)}
+        className="cursor-pointer w-full h-[163px] rounded-[12px] mb-3 flex justify-center items-center bg-mainBg"
+      >
         <Image
           src={images[0].src}
           alt="product image"

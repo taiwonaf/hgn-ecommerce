@@ -56,7 +56,7 @@ const CartOrderSummary = () => {
       </div>
       <div className="flex justify-between items-center gap-3 mb-3 md:pt-12 pt-7">
         <SummaryName name={"Total Price:"} />
-        <SummaryNameValue value={"$1095.00"} />
+        <SummaryNameValue value={`$${total.toLocaleString()}.00`} />
       </div>
       <Button
         disabled={amount < 1}

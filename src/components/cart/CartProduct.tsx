@@ -1,18 +1,31 @@
-import { JBLVibe } from "@/assets/images/productsImage";
+"use client";
+
 import { Add, Minus, Star1, Trash, Warning2 } from "iconsax-react";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "../ui/button";
-import { IProduct } from "@/types/product.model";
 import { useAppDispatch } from "@/redux/store";
-import { removeFromCart } from "@/redux/slices/cart";
+import {
+  decreaseCount,
+  editProductQuantity,
+  increaseCount,
+  removeFromCart,
+} from "@/redux/slices/cart";
+import { ICartProduct } from "@/redux/slices/cart/type";
 
 interface IProp {
-  data: IProduct;
+  data: ICartProduct;
 }
 
 const CartProduct: React.FC<IProp> = ({ data }) => {
+  const [count, setCount] = useState<number>(data?.quantity);
   const dispatch = useAppDispatch();
+  // const increaseCount = () => {
+  //   setCount((prev) => {
+  //     return prev++;
+  //     // dispatch(editProductQuantity({ id: data.id, quantity: count}))
+  //   });
+  // };
   return (
     <div className="md:rounded-[16px] w-full px-0 md:px-5 p-5 border-b-subText md:border-none border-b-[1px] md:bg-white flex flex-betwwen items-center gap-4">
       <div className="flex justify-center items-center border-subText border-[1px] md:border-none bg-[#FAFAFA] md:bg-mainBg rounded-[12px] max-w-[85px] md:max-w-[152px] h-[85px] md:h-[154px] w-full p-3">
@@ -71,13 +84,32 @@ const CartProduct: React.FC<IProp> = ({ data }) => {
             ${data?.price}.00
           </span>
           <div className="flex justify-between items-center gap-1 max-w-[80px] w-full">
-            <Button className="bg-mainBg md:rounded-[4px] p-0 rounded-[8px] h-4 md:h-6 w-4 md:w-6 transition-colors duration-200 hover:bg-mainBg/80">
+            <Button
+              disabled={data?.quantity === 0}
+              onClick={() => {
+                dispatch(
+                  decreaseCount({
+                    id: data.id,
+                  })
+                );
+              }}
+              className="bg-mainBg md:rounded-[4px] p-0 rounded-[8px] h-4 md:h-6 w-4 md:w-6 transition-colors duration-200 hover:bg-mainBg/80"
+            >
               <Minus size="16" className="text-primary" />
             </Button>
             <span className="text-xs md:text-base font-semibold  text-primary">
-              1
+              {data?.quantity}
             </span>
-            <Button className="bg-primary rounded-[4px] p-0 h-4 w-4 md:h-6 md:w-6 transition-colors duration-200 hover:bg-primary/80">
+            <Button
+              onClick={() => {
+                dispatch(
+                  increaseCount({
+                    id: data.id,
+                  })
+                );
+              }}
+              className="bg-primary rounded-[4px] p-0 h-4 w-4 md:h-6 md:w-6 transition-colors duration-200 hover:bg-primary/80"
+            >
               <Add size="16" variant="Linear" className="text-white" />
             </Button>
           </div>

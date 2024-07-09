@@ -2,6 +2,7 @@ import { IPaymentMethod } from "@/types/payment.model";
 import { Bank, RecordCircle } from "iconsax-react";
 import Image from "next/image";
 import React from "react";
+import { RadioGroupItem } from "../ui/radio-group";
 
 interface IProp {
   data: IPaymentMethod;
@@ -24,9 +25,7 @@ const PaymentOption: React.FC<IProp> = ({ data }) => {
           {data?.name}
         </span>
       </div>
-      <div>
-        <RecordCircle size="18" className="text-blackIcon" variant="Bold" />
-      </div>
+      <RadioGroupItem value={data?.name} id={data?.name} />
     </div>
   );
 };

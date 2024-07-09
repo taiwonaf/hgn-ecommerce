@@ -2,11 +2,17 @@
 
 import { CheckoutInfo, CheckoutProduct } from "@/components";
 import { Button } from "@/components/ui/button";
+import { RootState, useAppSelector } from "@/redux/store";
 import { Box, Location } from "iconsax-react";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 
 const CheckoutContainer = () => {
+  const cartItems = useAppSelector(
+    (store: RootState) => store.cartState.cartItems
+  );
+  const [count, setCount] = useState<number>(3);
+  const [more, setMore] = useState<boolean>(false);
   const router = useRouter();
   const info = [
     {
@@ -31,14 +37,42 @@ const CheckoutContainer = () => {
             Order List
           </h2>
           <div>
-            <CheckoutProduct />
+            {cartItems.length > 0 ? (
+              cartItems
+                .slice(0, count)
+                ?.map((item, index) => (
+                  <CheckoutProduct key={index} data={item} />
+                ))
+            ) : (
+              <div className="h-[100px] flex justify-center items-center">
+                <h4 className="text-lg font-semibold text-primary text-center">
+                  No Items in the cart
+                </h4>
+              </div>
+            )}
           </div>
         </div>
-        <div className="bg-white md:bg-transparent p-3 flex justify-center items-center border-t-primary/40 border-b-primary/40 border-t-[1px] border-b-[1px] cursor-pointer hover:bg-mainBg/50 transition-colors duration-200">
-          <span className="text-base md:text-[18px] hover:text-primary/80 duration-300 transition-colors text-primary">
-            See all
-          </span>
-        </div>
+        {cartItems.length > 3 ? (
+          <div
+            onClick={() => {
+              setMore(!more);
+              if (!more) {
+                setCount(-1);
+              } else {
+                window.scrollTo({
+                  top: 0,
+                  behavior: "smooth",
+                });
+                setCount(3);
+              }
+            }}
+            className="bg-white md:bg-transparent p-3 flex justify-center items-center border-t-primary/40 border-b-primary/40 border-t-[1px] border-b-[1px] cursor-pointer hover:bg-mainBg/50 transition-colors duration-200"
+          >
+            <span className="text-base md:text-[18px] hover:text-primary/80 duration-300 transition-colors text-primary">
+              {!more ? " See all" : "Show less"}
+            </span>
+          </div>
+        ) : null}
         <div className="md:px-5 pt-3 md:pt-0 gap-3 grid md:gap-0">
           {info?.map((item, index) => (
             <CheckoutInfo data={item} key={index} />

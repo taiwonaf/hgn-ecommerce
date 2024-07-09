@@ -2,6 +2,8 @@
 
 import { ImageGallery } from "@/components";
 import { Button } from "@/components/ui/button";
+import { addToCart, clearCart, increaseCount } from "@/redux/slices/cart";
+import { RootState, useAppDispatch, useAppSelector } from "@/redux/store";
 import { IProduct } from "@/types/product.model";
 import { Add, Minus, Star1, Warning2 } from "iconsax-react";
 import { useRouter } from "next/navigation";
@@ -40,8 +42,10 @@ const colorGradients = [
 ];
 
 const ProductDetailsContainer: React.FC<Iprop> = ({ product }) => {
+  const [quantity, setQuantity] = useState<number>(0);
   const router = useRouter();
   const [selectedColor, setSelectedColor] = useState<number>(0);
+  const dispatch = useAppDispatch();
 
   return (
     <div className="px-4 pt-4 pb-16">
@@ -130,13 +134,20 @@ const ProductDetailsContainer: React.FC<Iprop> = ({ product }) => {
           </div>
           <div className="md:border-b-subText md:border-b-[1px] font-normal text-subText md:pb-6 mb-6 flex justify-between items-center gap-2">
             <div className="flex justify-start items-center gap-6">
-              <Button className="bg-subText rounded-[8px] p-0 md:rounded-[12px] h-6 md:h-12 w-6 md:w-12 transition-colors duration-300 hover:bg-subText/80">
+              <Button
+                onClick={() => setQuantity((prev) => prev - 1)}
+                disabled={quantity === 0}
+                className="bg-subText rounded-[8px] p-0 md:rounded-[12px] h-6 md:h-12 w-6 md:w-12 transition-colors duration-300 hover:bg-subText/80"
+              >
                 <Minus size="24" className="text-white" />
               </Button>
               <span className="text-lg md:text-3xl font-medium text-primary">
-                1
+                {quantity}
               </span>
-              <Button className="bg-primary rounded-[8px] md:rounded-[12px] p-0 h-6 md:h-12 w-6 md:w-12 transition-colors duration-300 hover:bg-primary/80">
+              <Button
+                onClick={() => setQuantity((prev) => prev + 1)}
+                className="bg-primary rounded-[8px] md:rounded-[12px] p-0 h-6 md:h-12 w-6 md:w-12 transition-colors duration-300 hover:bg-primary/80"
+              >
                 <Add size="24" className="text-white" />
               </Button>
             </div>
@@ -150,7 +161,20 @@ const ProductDetailsContainer: React.FC<Iprop> = ({ product }) => {
           <div className="flex justify-between items-center gap-5 mb-[28px] md:mb-12 flex-col md:flex-row">
             <div className="md:max-w-[235px] w-full">
               <Button
-                onClick={() => router.push("/cart")}
+                onClick={() => {
+                  dispatch(clearCart());
+                  dispatch(
+                    addToCart({
+                      images: product?.images,
+                      name: product?.name,
+                      price: product?.price,
+                      description: product?.description,
+                      id: product?.id,
+                      quantity: quantity > 0 ? quantity : 1,
+                    })
+                  );
+                  router.push("/cart");
+                }}
                 className="bg-primary rounded-[12px] h-10 md:h-12 transition-colors duration-300 hover:bg-primary/80 text-white w-full"
               >
                 Buy Now
@@ -158,7 +182,19 @@ const ProductDetailsContainer: React.FC<Iprop> = ({ product }) => {
             </div>
             <div className="md:max-w-[235px] w-full">
               <Button
-                onClick={() => router.push("/cart")}
+                onClick={() => {
+                  dispatch(
+                    addToCart({
+                      images: product?.images,
+                      name: product?.name,
+                      price: product?.price,
+                      description: product?.description,
+                      id: product?.id,
+                      quantity: quantity > 0 ? quantity : 1,
+                    })
+                  );
+                  router.push("/cart");
+                }}
                 variant="outline"
                 className="border-primary bg-transparent rounded-[12px] h-10 md:h-12 transition-colors duration-300 text-primary w-full"
               >
