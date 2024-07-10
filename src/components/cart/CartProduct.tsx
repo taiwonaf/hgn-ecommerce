@@ -12,6 +12,7 @@ import {
   removeFromCart,
 } from "@/redux/slices/cart";
 import { ICartProduct } from "@/redux/slices/cart/type";
+import FovouriteToggle from "../favourite/FovouriteToggle";
 
 interface IProp {
   data: ICartProduct;
@@ -28,7 +29,7 @@ const CartProduct: React.FC<IProp> = ({ data }) => {
   // };
   return (
     <div className="md:rounded-[16px] w-full px-0 md:px-5 p-5 border-b-subText md:border-none border-b-[1px] md:bg-white flex flex-betwwen items-center gap-4">
-      <div className="flex justify-center items-center border-subText border-[1px] md:border-none bg-[#FAFAFA] md:bg-mainBg rounded-[12px] max-w-[85px] md:max-w-[152px] h-[85px] md:h-[154px] w-full p-3">
+      <div className="relative flex justify-center items-center border-subText border-[1px] md:border-none bg-[#FAFAFA] md:bg-mainBg rounded-[12px] max-w-[85px] md:max-w-[252px] h-[85px] md:h-[154px] w-full p-3">
         <div className="max-w-[116px] w-full h-[128px]">
           <Image
             src={data?.images[0]}
