@@ -32,7 +32,7 @@ const CartProduct: React.FC<IProp> = ({ data }) => {
       <div className="relative flex justify-center items-center border-subText border-[1px] md:border-none bg-[#FAFAFA] md:bg-mainBg rounded-[12px] max-w-[85px] md:max-w-[252px] h-[85px] md:h-[154px] w-full p-3">
         <div className="max-w-[116px] w-full h-[128px]">
           <Image
-            src={`https://api.timbu.cloud/images/${data?.data?.photos[0].url}`}
+            src={data?.images[0]}
             alt="Product image"
             height={128}
             width={116}
@@ -42,10 +42,10 @@ const CartProduct: React.FC<IProp> = ({ data }) => {
       </div>
       <div className="w-full">
         <div className="flex justify-between items-center mb-1">
-          <h2 className="text-xs leading-4 md:leading-6 md:text-[20px] font-medium text-primary">
-            {data?.data?.name}
+          <h2 className="text-xs md:text-[20px] font-medium text-primary">
+            {data?.name}
           </h2>
-          <div onClick={() => dispatch(removeFromCart(data?.data?.id))}>
+          <div onClick={() => dispatch(removeFromCart(data.id))}>
             <Trash
               size="18"
               className="text-black hover:text-black/40 duration-300 transition-colors"
@@ -55,7 +55,7 @@ const CartProduct: React.FC<IProp> = ({ data }) => {
         </div>
         <div className="flex md:block justify-between items-center gap-1">
           <p className="text-[10px] md:text-base max-w-[140px] md:max-w-0 text-subText line-clamp-2 md:line-clamp-1 mb-1 md:mb-3 w-full">
-            {data?.data?.description}
+            {data?.description}
           </p>
           <span className="md:hidden text-redText text-[10px] md:text-base font-medium">
             6 units left
@@ -82,7 +82,7 @@ const CartProduct: React.FC<IProp> = ({ data }) => {
         </div>
         <div className="flex justify-between items-center">
           <span className="text-xs md:text-[20px] font-medium text-primary">
-            ${data?.data?.current_price[0].NGN[0]}.00
+            ${data?.price}.00
           </span>
           <div className="flex justify-between items-center gap-1 max-w-[80px] w-full">
             <Button
@@ -90,7 +90,7 @@ const CartProduct: React.FC<IProp> = ({ data }) => {
               onClick={() => {
                 dispatch(
                   decreaseCount({
-                    id: data?.data?.id,
+                    id: data.id,
                   })
                 );
               }}
@@ -105,7 +105,7 @@ const CartProduct: React.FC<IProp> = ({ data }) => {
               onClick={() => {
                 dispatch(
                   increaseCount({
-                    id: data?.data?.id,
+                    id: data.id,
                   })
                 );
               }}
