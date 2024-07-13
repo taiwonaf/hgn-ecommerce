@@ -1,7 +1,5 @@
 import { HomeLayout, Categories } from "@/components";
 import ProductDetailsContainer from "@/containers/ProductDetailsContainer";
-import { productsData } from "@/data/products";
-import { IProduct } from "@/types/product.model";
 import React from "react";
 import {
   Breadcrumb,
