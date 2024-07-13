@@ -1,16 +1,18 @@
 "use client";
 
+import { IPhotos } from "@/redux/services/store/types";
 import { Heart } from "iconsax-react";
 import Image, { StaticImageData } from "next/image";
 import React, { useState } from "react";
 
 interface IProp {
-  images: StaticImageData[];
+  images: IPhotos[];
 }
 
 const ImageGallery: React.FC<IProp> = ({ images }) => {
   const [active, setActive] = useState<boolean>(false);
   const [currentImage, setCurrentImage] = useState<number>(0);
+  console.log(images);
   return (
     <div className="flex justify-start items-center flex-col md:w-1/2 w-full">
       <div className="relative max-w-[632px] w-full md:h-[508px] h-[237px] bg-white rounded-4 flex justify-center items-center rounded-[16px] mb-[18px] md:mb-12">
@@ -25,13 +27,13 @@ const ImageGallery: React.FC<IProp> = ({ images }) => {
             className="object-contain w-full h-full"
             height={128}
             width={116}
-            src={images[0].src}
+            src={`https://api.timbu.cloud/images/${images[currentImage].url}`}
             alt="Product main image"
           />
         </div>
       </div>
       <div className="bg-white p-3 rounded-[12px] flex justify-center items-center gap-3">
-        {images.slice(1).map((item, index) => (
+        {images.map((item, index) => (
           <div
             className={`${
               currentImage === index ? "border-[2px] border-primary" : null
@@ -40,7 +42,7 @@ const ImageGallery: React.FC<IProp> = ({ images }) => {
             onClick={() => setCurrentImage(index)}
           >
             <Image
-              src={item?.src}
+              src={`https://api.timbu.cloud/images/${item.url}`}
               alt="shop now products images"
               width={48}
               height={54}

@@ -50,7 +50,7 @@ const Navbar = () => {
           <div className="max-w-[130px] w-full flex justify-between items-center gap-3">
             <div
               onClick={() => router.push("/cart")}
-              className="p-1.5 rounded-[8px] relative duration-300 transition-all hover:bg-subText/10"
+              className="p-1.5 rounded-[8px] relative cursor-pointer duration-300 transition-all hover:bg-subText/10"
             >
               <span
                 className={`bg-red-600 transition-all h-[5px] w-[5px] rounded-full absolute top-1 right-0 ${
@@ -67,7 +67,7 @@ const Navbar = () => {
                 />
               </div>
             </div>
-            <div className="p-1.5 rounded-[8px] duration-300 transition-all hover:bg-subText/10">
+            <div className="cursor-pointer p-1.5 rounded-[8px] duration-300 transition-all hover:bg-subText/10">
               <HeartIcon className="h-6 w-6 text-primary hover:text-primary/80 cursor-pointer" />
             </div>
             <Avatar className="w-6 h-6 cursor-pointer">

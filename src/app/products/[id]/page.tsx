@@ -14,7 +14,6 @@ import Link from "next/link";
 import { Slash } from "lucide-react";
 
 const page = ({ params }: { params: { id: string } }) => {
-  const product = productsData.find((item) => item.id === params?.id);
   return (
     <HomeLayout>
       <Categories />
@@ -44,7 +43,7 @@ const page = ({ params }: { params: { id: string } }) => {
           </div>
         </div>
       </div>
-      <ProductDetailsContainer product={product as IProduct} />
+      <ProductDetailsContainer productId={params.id} />
     </HomeLayout>
   );
 };

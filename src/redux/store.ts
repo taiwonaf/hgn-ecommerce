@@ -12,6 +12,7 @@ import {
   REGISTER,
 } from "redux-persist";
 import createWebStorage from "redux-persist/lib/storage/createWebStorage";
+import { storeApi } from "./services/store";
 
 const createNoopStorage = () => {
   return {
@@ -39,6 +40,7 @@ const persistConfig = {
 
 const appReducers = combineReducers({
   cartState: cartReducer,
+  [storeApi.reducerPath]: storeApi.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, appReducers);
@@ -50,7 +52,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(),
+    }).concat(storeApi.middleware),
 });
 
 export const persistor = persistStore(store);
