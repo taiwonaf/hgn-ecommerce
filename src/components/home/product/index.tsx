@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import React from "react";
 import { Star1 } from "iconsax-react";
 import { useRouter } from "next/navigation";
@@ -13,47 +13,44 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import FovouriteToggle from "@/components/favourite/FovouriteToggle";
-import { ICloudProduct } from "@/redux/services/store/types";
 
 interface IProp {
-  data: ICloudProduct;
+  images: StaticImageData[];
+  name: string;
+  price: number;
+  description: string;
+  id: string;
 }
 
-const Product: React.FC<IProp> = ({ data }) => {
-  const { photos, name, current_price, description, id } = data;
+const Product: React.FC<IProp> = ({ images, name, price, description, id }) => {
   const cartItems = useAppSelector(
     (store: RootState) => store.cartState.cartItems
   );
   const dispatch = useAppDispatch();
   const router = useRouter();
   return (
-    <div className="max-w-[292px] w-full rounded-[16px] p-5 bg-white">
-      <div
-        onClick={() => router.push(`products/${id}`)}
-        className="relative cursor-pointer w-full h-[163px] rounded-[12px] mb-3 flex justify-center items-center bg-mainBg"
-      >
+    <div className=" max-w-[292px] w-full rounded-[16px] p-5 bg-white">
+      <div className="relative cursor-pointer w-full h-[163px] rounded-[12px] mb-3 flex justify-center items-center bg-mainBg">
         <FovouriteToggle />
         <Image
-          src={`https://api.timbu.cloud/images/${photos[0].url}`}
+          src={images[0].src}
           alt="product image"
           width={116}
           height={128}
           className="object-contain"
         />
       </div>
-      <Tooltip delayDuration={0}>
-        <TooltipTrigger className="w-full">
+      <Tooltip>
+        <TooltipTrigger>
           <div
             onClick={() => router.push(`products/${id}`)}
             className="cursor-pointer"
           >
             <div className="flex justify-between items-center gap-2 mb-1">
-              <h2 className="text-primary text-base font-medium line-clamp-1 text-left">
-                {name}
-              </h2>
-              <h3 className="text-primary text-base font-normal">{`$${current_price[0].NGN[0]}.00`}</h3>
+              <h2 className="text-primary text-base font-medium">{name}</h2>
+              <h3 className="text-primary text-base font-normal">{`$${price}.00`}</h3>
             </div>
-            <p className="text-xs text-left text-subText font-medium mb-1.5 line-clamp-1">
+            <p className="text-xs text-subText font-medium mb-1.5 line-clamp-1">
               {description}
             </p>
             <div className="flex justify-start items-center gap-1 mb-3">
@@ -73,12 +70,17 @@ const Product: React.FC<IProp> = ({ data }) => {
           <p>Click to view details</p>
         </TooltipContent>
       </Tooltip>
-      {!cartItems?.some((item) => item.data.id === id) ? (
+
+      {!cartItems.some((item) => item.id === id) ? (
         <Button
           onClick={() => {
             dispatch(
               addToCart({
-                data: { ...data },
+                images,
+                name,
+                price,
+                description,
+                id,
                 quantity: 1,
               })
             );

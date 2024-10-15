@@ -1,4 +1,4 @@
-import { ICloudProduct } from "@/redux/services/store/types";
+import { StaticImageData } from "next/image";
 
 export interface ICart {
   amount: number;
@@ -7,6 +7,10 @@ export interface ICart {
 }
 
 export interface ICartProduct {
-  data: ICloudProduct;
+  images: StaticImageData[];
+  name: string;
+  price: number;
+  description: string;
+  id: string;
   quantity: number;
 }
